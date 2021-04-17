@@ -91,7 +91,7 @@ dev_set=${spk}_dev
 
 if [ ${stage} -le -1 ] && [ ${stop_stage} -ge -1 ]; then
     echo "stage -1: Data and Pretrained model download"
-    local/data_download.sh ${db_root}
+    bash ./local/data_download.sh ${db_root}
 
     if [ ! -d ${pretrained_model_dir}/${pretrained_model_name} ]; then
         echo "Downloading pretrained TTS model..."
