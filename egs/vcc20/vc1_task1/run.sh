@@ -95,13 +95,13 @@ if [ ${stage} -le -1 ] && [ ${stop_stage} -ge -1 ]; then
 
     if [ ! -d ${pretrained_model_dir}/${pretrained_model_name} ]; then
         echo "Downloading pretrained TTS model..."
-        local/pretrained_model_download.sh ${pretrained_model_dir} ${pretrained_model_name}
+        bash ./local/pretrained_model_download.sh ${pretrained_model_dir} ${pretrained_model_name}
     fi
     echo "Pretrained TTS model exists: ${pretrained_model_name}"
 
     if [ ! -d ${voc_expdir} ]; then
         echo "Downloading pretrained PWG model..."
-        local/pretrained_model_download.sh ${pretrained_model_dir} pwg_task1
+        bash ./local/pretrained_model_download.sh ${pretrained_model_dir} pwg_task1
     fi
     echo "PWG model exists: ${voc_expdir}"
 fi
@@ -115,7 +115,7 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
         exit 1;
     fi
 
-    local/data_prep_task1.sh ${db_root} data/${org_set} ${spk} ${trans_type}
+    bash ./local/data_prep_task1.sh ${db_root} data/${org_set} ${spk} ${trans_type}
     utils/data/resample_data_dir.sh ${fs} data/${org_set} # Downsample to fs from 24k
     utils/fix_data_dir.sh data/${org_set}
     utils/validate_data_dir.sh --no-feats data/${org_set}
