@@ -65,7 +65,7 @@ trgspk=                                         # Ex. TEF1
 asr_model="librispeech.transformer.ngpu4"
 test_list_file=local/lists/eval_list.txt
 test_name=eval_asr
-tts_model_dir=                                  # If use downloaded model,
+tts_model_dir="downloads"                                  # If use downloaded model,
                                                 # set to, ex. `downloads/tts1_TEF1/exp/TEF1_train_pytorch_train_pytorch_transformer+spkemb.tts1`
                                                 # If use manually trained model,
                                                 # set to, ex. `exp/TEF1_train_pytorch_train_pytorch_transformer+spkemb.tts1`
@@ -383,7 +383,7 @@ if [ ${stage} -le 10 ] && [ ${stop_stage} -ge 10 ]; then
 
     if [ ! -d ${pretrained_model_dir}/${finetuned_model_name} ]; then
         echo "Downloading finetuned TTS model..."
-        local/pretrained_model_download.sh ${pretrained_model_dir} ${finetuned_model_name}
+        bash local/pretrained_model_download.sh ${pretrained_model_dir} ${finetuned_model_name}
     fi
     echo "Finetuned TTS model downloaded: ${finetuned_model_name}"
 fi
